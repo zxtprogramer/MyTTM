@@ -17,7 +17,9 @@ g=1.25e13; %W/(cm3 K)
 
 rMin=0; rMax=10*nm; %cm
 zMin=0; zMax=10*nm; %cm
-Nr=10; Nz=10;
+
+Nr=3; Nz=3;
+
 rNum=Nr+1; zNum=Nz+1;
 dr=(rMax-rMin)/Nr;
 dz=(zMax-zMin)/Nz;
@@ -31,11 +33,11 @@ dt=(tEnd-tBegin)/Nt;
 EM0=zeros(rNum,zNum);
 AM0=zeros(rNum,zNum);
 M0=zeros(rNum*zNum*2);
-T0=zeros(rNum*zNum,1);
+T0=zeros(rNum*zNum*2,1);
 
 EM1=zeros(rNum,zNum);
 AM1=zeros(rNum,zNum);
 M1=zeros(rNum*zNum*2);
-T1=zeros(rNum*zNum,1);
+T1=zeros(rNum*zNum*2,1);
 
 end
