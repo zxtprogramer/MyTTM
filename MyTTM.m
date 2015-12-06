@@ -1,6 +1,7 @@
 function MyTTM()
 
 Global();
+StartCondition();
 
 global nm ps Ce Ca KeV KeH KaV KaH g;
 global rMin rMax zMin zMax Nr Nz rNum zNum dr dz tBegin tEnd Nt dt;
@@ -47,24 +48,33 @@ while t<tEnd
     for i=rNum
         for j=1:zNum
             num=(i-1)*zNum + (j-1) + 1;
+            numA=num + rNum*zNum;
             M1(num,num)=1;
+            M1(numA,numA)=1;
             M0(num,num)=1;
+            M0(numA,numA)=1;
         end
     end
 
     for i=1:rNum
         for j=1
             num=(i-1)*zNum + (j-1) + 1;
+            numA=num + rNum*zNum;
             M1(num,num)=1;
+            M1(numA,numA)=1;
             M0(num,num)=1;
+            M0(numA,numA)=1;
         end
     end
 
     for i=1:rNum
         for j=zNum
             num=(i-1)*zNum + (j-1) + 1;
+            numA=num + rNum*zNum;
             M1(num,num)=1;
+            M1(numA,numA)=1;
             M0(num,num)=1;
+            M0(numA,numA)=1;
         end
     end
 
@@ -77,9 +87,8 @@ while t<tEnd
             numA=num + rNum*zNum;
      
             r=(i-1)*dr; z=(j-1)*dz;
-            A0(num,1)=AFun(r,z);
+            A0(num,1)=AFun(r,z,t);
             
-
             if i==1 || i==rNum || j==1 || j==zNum
                 continue
             end
@@ -144,7 +153,7 @@ while t<tEnd
         end
     end
     t=t+dt;
-    T1
+    plot(T1(10:zNum:rNum*zNum)')
     pause
 end
 

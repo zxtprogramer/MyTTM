@@ -8,6 +8,4 @@ global Temp0;
 b=300;
 
 
-
-
 end
