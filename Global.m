@@ -14,7 +14,7 @@ KeH=2; KaH=0.01; %J/(cm s K)
 g=1.25e13; %W/(cm3 K)
 
 %%%%test%%%%
-g=0;
+%g=0;
 %Ce=Ca; KeV=KaV; KeH=KaH;
 %%%%%%%%%%%%
 
@@ -29,7 +29,7 @@ dr=(rMax-rMin)/Nr;
 dz=(zMax-zMin)/Nz;
 
 tBegin=0; tEnd=1*ps; %s
-Nt=1e2;
+Nt=1e3;
 dt=(tEnd-tBegin)/Nt;
 
 M=zeros(rNum*zNum*2);
