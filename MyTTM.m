@@ -19,6 +19,7 @@ while t<tEnd
         for j=2:zNum-1
             num=(i-1)*zNum + (j-1) + 1;
             numA=num + rNum*zNum;
+            r=(i-1)*dr; z=(j-1)*dz;
 
             M(num, num)=Ce + KeV/dr/dr*dt + KeH/dz/dz*dt;
             M(num, num+zNum)=-KeV/dr/dr*dt;
@@ -40,7 +41,8 @@ while t<tEnd
                      (KeV*dt/dr/dr)*T0(num+zNum,1) + ...
                      (KeH*dt/2/dz/dz)*T0(num+1,1) + ...
                      (KeH*dt/2/dz/dz)*T0(num-1,1) + ...
-                     g*dt*(T0(numA,1)-T0(num,1))*flag;
+                     g*dt*(T0(numA,1)-T0(num,1))*flag + ...
+                     AFun(r,z,t)*dt;
 
             C(numA,1)=(Ca - KaV*dt/dr/dr - KaH*dt/dz/dz)*T0(numA,1) + ...
                       (KaV*dt/dr/dr)*T0(numA+zNum,1) + ...
@@ -154,15 +156,17 @@ while t<tEnd
             Ta(i,j)=T0(numA,1);
         end
     end
-    det(M)
-    %pcolor(r,z,Te)
-    figure(1)
-    surf(r,z,Te);
-    figure(2)
-    surf(r,z,Ta);
-    %surf(r,z,Ta);
 
-    pause
+    hold off
+    figure(1)
+    surfc(r,z,Te,'FaceAlpha',0.5);
+    %pcolor(r,z,Te)
+    hold on;
+
+    %figure(2)
+    surfc(r,z,Ta,'FaceAlpha',0.5);
+    %pcolor(r,z,Ta)
+
 end
 
 end

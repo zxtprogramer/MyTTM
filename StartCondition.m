@@ -11,10 +11,10 @@ for i=1:rNum
         numA=num + rNum*zNum;
         r=i*dr; z=j*dz;
         if z<2*zMax/3 && z>zMax/3 && r<rMax/3
-           T1(num,1)=Temp0+1000;
-           T1(numA,1)=Temp0+1000;
-           T0(num,1)=Temp0+1000;
-           T0(numA,1)=Temp0+1000;
+           T1(num,1)=Temp0;
+           T1(numA,1)=Temp0;
+           T0(num,1)=Temp0;
+           T0(numA,1)=Temp0;
         else
            T1(num,1)=Temp0;
            T1(numA,1)=Temp0;

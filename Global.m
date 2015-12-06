@@ -3,9 +3,11 @@ function Global()
 global nm ps Ce Ca KeV KeH KaV KaH g;
 global rMin rMax zMin zMax Nr Nz rNum zNum dr dz tBegin tEnd Nt dt;
 global M C T1 T0;
+global eV
 
 nm=1e-7; %cm
 ps=1e-12; %s
+eV=1.602176e-19;
 
 Ce=1; Ca=0.42; %J/(cm3K)
 KeV=2; KaV=0.01; %J/(cm s K)
@@ -28,8 +30,8 @@ rNum=Nr+1; zNum=Nz+1;
 dr=(rMax-rMin)/Nr;
 dz=(zMax-zMin)/Nz;
 
-tBegin=0; tEnd=1*ps; %s
-Nt=1e3;
+tBegin=0; tEnd=10*ps; %s
+Nt=1e4;
 dt=(tEnd-tBegin)/Nt;
 
 M=zeros(rNum*zNum*2);
