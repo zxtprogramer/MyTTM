@@ -15,7 +15,6 @@ while t<tEnd
         for j=1:zNum
             num=(i-1)*zNum + (j-1);
             
-            
         end
     end
     t=t+dt;
