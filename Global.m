@@ -1,15 +1,16 @@
 function Global()
 
 global eV nm ps Ce Ca KeV KeH KaV KaH g;
-global rMin rMax zMin zMax Nr Nz rNum zNum dr dz tBegin tEnd Nt dt;
+global rMin rMax zMin zMax Nr Nz rNum zNum dr dz tBegin tEnd Nt dt t;
 
 global M C T1 T0;  %T1 is the Temp at next time, T0 is now Temp
 global nT Tmax;  %nT total number of rearrangement atoms; Tmax the max Temp during process;
   
 global Ea Na v0;  %active energy; atom density; phonon frequency;
 
+global TempEnv; % K
 
-
+TempEnv=300; %K
 
 nm=1e-7; %cm
 ps=1e-12; %s
@@ -29,17 +30,17 @@ g=1.25e13; %W/(cm3 K)
 
 %%%%%HOPG%%%%%%%%%%%%%%%%%
 Ce=3.73e-2; Ca=1.6; %J/(cm3K)
-KeV=11; KaV=5e3; %J/(cm s K)
-KeH=11; KaH=5e3; %J/(cm s K)
+KeH=5.6e-2; KaH=5.7e-2; %J/(cm s K); z direction
+KeV=5.6; KaV=20; %J/(cm s K); r direction
 
 g=3e13; %W/(cm3 K)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 rMin=0; rMax=10*nm; %cm
-zMin=0; zMax=10*nm; %cm
+zMin=0; zMax=5*nm; %cm
 
-Nr=20;Nz=20;
+Nr=50;Nz=50;
 
 rNum=Nr+1; zNum=Nz+1;
 dr=(rMax-rMin)/Nr;
