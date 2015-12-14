@@ -33,7 +33,7 @@ KeV=11; KaV=5e3; %J/(cm s K)
 KeH=11; KaH=5e3; %J/(cm s K)
 
 g=3e13; %W/(cm3 K)
-g=0;
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 rMin=0; rMax=10*nm; %cm
@@ -49,10 +49,10 @@ tBegin=0; tEnd=10*1e-15; %s
 Nt=1e3;
 dt=(tEnd-tBegin)/Nt;
 
-M=zeros(rNum*zNum*2);
-T1=zeros(rNum*zNum*2,1);
+M=sparse(rNum*zNum*2);
+T1=sparse(rNum*zNum*2,1);
 
-T0=zeros(rNum*zNum*2,1);
-C=zeros(rNum*zNum*2,1);
+T0=sparse(rNum*zNum*2,1);
+C=sparse(rNum*zNum*2,1);
 
 end

@@ -13,12 +13,12 @@ global Ea Na v0;  %active energy; atom density; phonon frequency;
 
 t=tBegin;
 nT=0;
-Tmax=zeros(rNum,zNum);
+Tmax=sparse(rNum,zNum);
 sumAFun=0;
 
 while t<tEnd
-    M=zeros(rNum*zNum*2);
-    C=zeros(rNum*zNum*2,1);
+    M=sparse(rNum*zNum*2);
+    C=sparse(rNum*zNum*2,1);
     T0=T1;
     
 %%%%%boundary condition%%%%%
