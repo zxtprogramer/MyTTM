@@ -39,7 +39,7 @@ g=0;
 rMin=0; rMax=10*nm; %cm
 zMin=0; zMax=10*nm; %cm
 
-Nr=50;Nz=50;
+Nr=20;Nz=20;
 
 rNum=Nr+1; zNum=Nz+1;
 dr=(rMax-rMin)/Nr;

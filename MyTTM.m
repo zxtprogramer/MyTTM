@@ -182,7 +182,7 @@ while t<tEnd
     figure(1)
     %surfc(rM,zM,Te,'FaceAlpha',0.5);
     surfc(rM,zM,Te);
-    sumAFun
+    sumAFun/eV
     %pcolor(r,z,Te)
     hold on;
 
