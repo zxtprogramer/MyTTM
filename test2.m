@@ -1,6 +1,3 @@
-function a=AFun(r,z,t)
-%Heat Source
-
 global eV nm ps Ce Ca KeV KeH KaV KaH g;
 global rMin rMax zMin zMax Nr Nz rNum zNum dr dz tBegin tEnd Nt dt;
 
@@ -9,22 +6,22 @@ global nT Tmax;  %nT total number of rearrangement atoms; Tmax the max Temp duri
   
 global Ea Na v0;  %active energy; atom density; phonon frequency;
 
+Global();
 
-dE=1e3*eV;
-
-r0=2*nm;
-z0=1*nm;
-t0=1e-15;
-b=dE/(sqrt(2*pi^3)*r0^2*z0*t0);
+rM=[0:dr:rMax];
+zM=[0:dz:zMax];
+tM=[0:dt:tEnd];
 
 
-
-Sdis=exp(-r/r0)*exp(-z/z0);
-
-Tdis=exp(-(t)^2/2/t0^2);
-a=b*Sdis*Tdis;
-
-
-
-  
+sumAFun=0;
+num=0;
+for t=tM
+  for z=zM
+    for r=rM
+      sumAFun=sumAFun + 2*pi*r*dr*dz*dt*AFun(r,z,t)/eV;
+    end
+  end
+  sumAFun
 end
+
+sumAFun

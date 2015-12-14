@@ -3,11 +3,18 @@ function MyTTM()
 Global();
 StartCondition();
 
-global nm ps Ce Ca KeV KeH KaV KaH g;
+global eV nm ps Ce Ca KeV KeH KaV KaH g;
 global rMin rMax zMin zMax Nr Nz rNum zNum dr dz tBegin tEnd Nt dt;
-global M C T1 T0;
+
+global M C T1 T0;  %T1 is the Temp at next time, T0 is now Temp
+global nT Tmax;  %nT total number of rearrangement atoms; Tmax the max Temp during process;
+  
+global Ea Na v0;  %active energy; atom density; phonon frequency;
 
 t=tBegin;
+nT=0;
+Tmax=zeros(rNum,zNum);
+sumAFun=0;
 
 while t<tEnd
     M=zeros(rNum*zNum*2);
@@ -141,30 +148,48 @@ while t<tEnd
         end
     end
     
-    T1=inv(M)*C;
+%    T1=inv(M)*C;
+    T1=M\C;
+    
     t=t+dt;
 
-
+%%%%%%%%%%%%%%%%%deal with data%%%%%%%%%%%%%%%%%%%%%%%
     ri=0:dr:rMax; zi=0:dz:zMax;
-    [z,r]=meshgrid(zi,ri);
+    [zM,rM]=meshgrid(zi,ri);
     Te=zeros(rNum,zNum); Ta=zeros(rNum,zNum);
+
     for i=1:rNum
         for j=1:zNum
             num=(i-1)*zNum + (j-1) + 1;
             numA=num + rNum*zNum;
+            r=(i-1)*dr; z=(j-1)*dz;
+            
             Te(i,j)=T0(num,1);
             Ta(i,j)=T0(numA,1);
+
+
+	    if Ta(i,j)>Tmax(i,j)
+	      Tmax(i,j)=Ta(i,j);
+	    end
+
+	    nT=nT + (2*pi*r*dr*dz*dt)*Na*v0*exp(-(Ea*Na)/(Ta(i,j)*Ca));
+	    sumAFun=sumAFun + 2*pi*r*dr*dz*dt*AFun(r,z,t);
+	    
         end
     end
 
     hold off
     figure(1)
-    surfc(r,z,Te,'FaceAlpha',0.5);
+    %surfc(rM,zM,Te,'FaceAlpha',0.5);
+    surfc(rM,zM,Te);
+    sumAFun
     %pcolor(r,z,Te)
     hold on;
 
     %figure(2)
-    surfc(r,z,Ta,'FaceAlpha',0.5);
+    surfc(rM,zM,Ta);
+%        surfc(rM,zM,Ta,'FaceAlpha',0.5);
+    %surfc(rM,zM,Tmax);
     %pcolor(r,z,Ta)
 
 end
