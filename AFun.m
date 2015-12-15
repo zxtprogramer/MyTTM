@@ -12,8 +12,8 @@ global Ea Na v0;  %active energy; atom density; phonon frequency;
 
 dE=1e3*eV;
 
-r0=0.25*nm;
-z0=0.5*nm;
+r0=1*nm;
+z0=0.6*nm;
 t0=1e-15;
 b=dE/(sqrt(2*pi^3)*r0^2*z0*t0);
 

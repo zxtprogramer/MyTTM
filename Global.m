@@ -31,9 +31,9 @@ g=1.25e13; %W/(cm3 K)
 %%%%%HOPG%%%%%%%%%%%%%%%%%
 Ce=3.73e-2; Ca=1.6; %J/(cm3K)
 KeH=5.6e-2; KaH=5.7e-2; %J/(cm s K); z direction
-KeV=5.6; KaV=20; %J/(cm s K); r direction
+KeV=5.6; KaV=10; %J/(cm s K); r direction
 
-g=3e13; %W/(cm3 K)
+g=1e15; %W/(cm3 K)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -46,8 +46,8 @@ rNum=Nr+1; zNum=Nz+1;
 dr=(rMax-rMin)/Nr;
 dz=(zMax-zMin)/Nz;
 
-tBegin=0; tEnd=10*1e-15; %s
-Nt=1e3;
+tBegin=0; tEnd=1000*1e-15; %s
+Nt=1e5;
 dt=(tEnd-tBegin)/Nt;
 
 M=sparse(rNum*zNum*2);

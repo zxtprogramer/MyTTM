@@ -13,7 +13,7 @@ global Ea Na v0;  %active energy; atom density; phonon frequency;
 
 t=tBegin;
 nT=0;
-Tmax=sparse(rNum,zNum);
+Tmax=zeros(rNum,zNum);
 sumAFun=0;
 
 while t<tEnd
@@ -102,17 +102,17 @@ while t<tEnd
 
     hold off
     figure(1)
-    surfc(rM,zM,Te,'FaceAlpha',0.5);
+    %surfc(rM,zM,Te,'FaceAlpha',0.5);
     %surfc(rM,zM,Te);
     sumAFun/eV
     nT
     %pcolor(r,z,Te)
-    hold on;
+    %hold on;
 
     %figure(2)
     %surfc(rM,zM,Ta);
-    surfc(rM,zM,Ta,'FaceAlpha',0.5);
-    %surfc(rM,zM,Tmax);
+    %surfc(rM,zM,Ta,'FaceAlpha',0.5);
+    surfc(rM,zM,Tmax);
     %pcolor(r,z,Ta)
 
 end
