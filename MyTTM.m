@@ -14,6 +14,7 @@ global Ea Na v0;  %active energy; atom density; phonon frequency;
 t=tBegin;
 nT=0;
 Tmax=zeros(rNum,zNum);
+Tmelt=zeros(rNum,zNum);
 sumAFun=0;
 
 while t<tEnd
@@ -87,12 +88,19 @@ while t<tEnd
             r=(i-1)*dr; z=(j-1)*dz;
             
             Te(i,j)=T0(num,1);
-            Ta(i,j)=T0(numA,1);
-
-
+	    Ta(i,j)=T0(numA,1);
+	    
+	    
 	    if Ta(i,j)>Tmax(i,j)
 	      Tmax(i,j)=Ta(i,j);
 	    end
+	    
+	    if Tmax(i,j)>4000
+		Tmelt(i,j)=1;
+	    else
+		Tmelt(i,j)=0;
+            end
+	      
 
 	    nT=nT + (2*pi*r*dr*dz*dt)*Na*v0*exp(-(Ea*Na)/(Ta(i,j)*Ca));
 	    sumAFun=sumAFun + 2*pi*r*dr*dz*dt*AFun(r,z,t);
@@ -102,17 +110,19 @@ while t<tEnd
 
     hold off
     figure(1)
-    %surfc(rM,zM,Te,'FaceAlpha',0.5);
+    surfc(rM,zM,Te,'FaceAlpha',0.5);
     %surfc(rM,zM,Te);
     sumAFun/eV
     nT
     %pcolor(r,z,Te)
-    %hold on;
+    hold on;
 
-    %figure(2)
     %surfc(rM,zM,Ta);
-    %surfc(rM,zM,Ta,'FaceAlpha',0.5);
-    surfc(rM,zM,Tmax);
+    surfc(rM,zM,Tmax,'FaceAlpha',1);
+
+    hold off;
+    figure(2);
+    surfc(rM,zM,Tmelt);
     %pcolor(r,z,Ta)
 
 end
